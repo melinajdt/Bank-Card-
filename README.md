@@ -6,7 +6,7 @@ Welcome to **Pink Glow — Bank Card UI**, a front-end project focused on creati
 
 ## 🚀 Live Demo
 
-🔗 **[✨ View Live Demo](YOUR-LIVE-DEMO-LINK-HERE)**
+🔗 **[✨ View Live Demo]( https://melinajdt.github.io/pink-glow-bank-card/)**
 
 
 ## 🎀 Features
