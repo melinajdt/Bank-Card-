@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080608">
+    <title>Black Pink Bank</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #ff4f9a;
+            --hot-pink: #ff1685;
+            --soft-pink: #ffb3d4;
+            --bg: #080608;
+            --panel: #100b0e;
+            --field: #1b1116;
+            --border: #482333;
+            --muted: #b9a5ae;
+            --white: #fff5fb;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 18px;
+            font-family: "Inter", sans-serif;
+            color: var(--white);
+            background:
+                radial-gradient(ellipse at 8% 12%, rgba(255, 20, 120, 0.20), transparent 38%),
+                radial-gradient(ellipse at 92% 88%, rgba(255, 65, 150, 0.15), transparent 38%),
+                #080608;
+        }
+
+        .workspace {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            width: 100%;
+            max-width: 480px;
+            padding: 26px;
+            background: #100b0e;
+            border: 1px solid #55283b;
+            border-radius: 28px;
+            box-shadow:
+                0 0 25px rgba(255, 30, 125, 0.10),
+                0 0 65px rgba(255, 30, 125, 0.09),
+                0 25px 80px #000a;
+
+            &::before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: -130px;
+                left: -100px;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                background: rgba(255, 20, 120, 0.07);
+                filter: blur(65px);
+                pointer-events: none;
+            }
+
+            .workspace-head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                margin-bottom: 24px;
+
+                h2 {
+                    font-size: 18px;
+                    font-weight: 800;
+                }
+
+                span {
+                    color: var(--soft-pink);
+                    font-size: 10px;
+                    letter-spacing: 1.5px;
+                }
+            }
+
+            .card-scene {
+                perspective: 1000px;
+                margin-bottom: 28px;
+            }
+
+            .bank-card {
+                position: relative;
+                isolation: isolate;
+                overflow: hidden;
+                min-height: 225px;
+                padding: 23px;
+                border: 1px solid #ffb3d466;
+                border-radius: 22px;
+                color: white;
+
+                background:
+                    radial-gradient(ellipse at 15% 5%, rgba(255, 255, 255, 0.18), transparent 36%),
+                    linear-gradient(130deg, #ff91bc 0%, #ed408c 42%, #531c36 100%);
+
+                box-shadow:
+                    0 22px 38px rgba(255, 22, 133, 0.20),
+                    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+
+                transform: rotateX(4deg) rotateY(-5deg);
+                transform-style: preserve-3d;
+                transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    width: 270px;
+                    height: 270px;
+                    top: -145px;
+                    left: -65px;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    border-radius: 50%;
+                    box-shadow:
+                        0 0 0 22px rgba(255, 255, 255, 0.04),
+                        0 0 0 48px rgba(255, 255, 255, 0.03);
+                    pointer-events: none;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    z-index: 5;
+                    top: -60%;
+                    left: -90%;
+                    width: 48%;
+                    height: 220%;
+                    border: none;
+                    border-radius: 0;
+                    background: linear-gradient(110deg,
+                            transparent 0%,
+                            rgba(255, 255, 255, 0.04) 25%,
+                            rgba(255, 255, 255, 0.58) 48%,
+                            rgba(255, 230, 243, 0.22) 55%,
+                            transparent 100%);
+                    transform: rotate(18deg);
+                    opacity: 0;
+                    pointer-events: none;
+                }
+
+                &:hover {
+                    transform: rotateX(0) rotateY(0) translateY(-4px);
+                    box-shadow:
+                        0 28px 45px rgba(255, 22, 133, 0.30),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+
+                    &::after {
+                        opacity: 1;
+                        animation: glassShine 0.8s ease forwards;
+                    }
+                }
+
+                .card-top,
+                .card-bottom {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 10px;
+                }
+
+                .card-label {
+                    font-size: 11px;
+                    font-weight: 800;
+                    letter-spacing: 2px;
+                }
+
+                .contactless {
+                    font-size: 23px;
+                    transform: rotate(90deg);
+                }
+
+                .chip {
+                    position: relative;
+                    width: 43px;
+                    height: 32px;
+                    margin: 25px 0 15px;
+                    border-radius: 8px;
+                    background: linear-gradient(135deg, #fff0c9, #c6a166);
+                    box-shadow: inset 0 0 0 1px rgba(104, 70, 31, 0.25);
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 13px;
+                        right: 13px;
+                        border-left: 1px solid rgba(112, 77, 34, 0.4);
+                        border-right: 1px solid rgba(112, 77, 34, 0.4);
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 10px;
+                        left: 0;
+                        right: 0;
+                        height: 10px;
+                        border-top: 1px solid rgba(112, 77, 34, 0.4);
+                        border-bottom: 1px solid rgba(112, 77, 34, 0.4);
+                    }
+                }
+
+                .card-number {
+                    direction: ltr;
+                    text-align: left;
+                    white-space: nowrap;
+                    margin-bottom: 22px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    letter-spacing: 1.3px;
+                }
+
+                /* CVV preview on the card */
+                .card-cvv {
+                    position: absolute;
+                    top: 128px;
+                    right: 23px;
+                    z-index: 6;
+                    color: #ffffff;
+                    font-size: 12px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                    text-align: right;
+                    pointer-events: none;
+                    text-shadow: 0 1px 3px rgba(50, 0, 20, 0.35);
+                }
+
+                .card-holder-label {
+                    margin-bottom: 5px;
+                    font-size: 9px;
+                    letter-spacing: 1.2px;
+                    opacity: 0.8;
+                }
+
+                .card-holder {
+                    overflow: hidden;
+                    max-width: 150px;
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 0.8px;
+                    text-overflow: ellipsis;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                }
+
+                .card-expiry {
+                    font-size: 12px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                }
+
+                .visa {
+                    font-size: 25px;
+                    font-weight: 800;
+                    font-style: italic;
+                    letter-spacing: -2px;
+                }
+            }
+
+            .section-title {
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                margin: 22px 0 14px;
+                font-size: 13px;
+                font-weight: 800;
+
+                .step {
+                    display: grid;
+                    place-items: center;
+                    width: 26px;
+                    height: 26px;
+                    flex-shrink: 0;
+                    border-radius: 8px;
+                    background: #ff4f9a20;
+                    color: var(--soft-pink);
+                    font-size: 11px;
+                }
+            }
+
+            .field-label {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--muted);
+                font-size: 11px;
+                font-weight: 700;
+            }
+
+            .number-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 8px;
+                direction: ltr;
+            }
+
+            .field {
+                width: 100%;
+                min-width: 0;
+                height: 45px;
+                padding: 0 10px;
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                outline: none;
+                background: var(--field);
+                color: var(--white);
+                font: inherit;
+                font-size: 13px;
+                transition: border-color 0.2s, box-shadow 0.2s;
+
+                &::placeholder {
+                    color: #957b88;
+                }
+
+                &:focus {
+                    border-color: var(--pink);
+                    box-shadow: 0 0 0 3px rgba(255, 79, 154, 0.12);
+                }
+            }
+
+            .card-part {
+                padding: 0 3px;
+                text-align: center;
+                font-family: "Inter", sans-serif;
+                letter-spacing: 1px;
+            }
+
+            .helper {
+                margin-top: 8px;
+                color: #b49ea9;
+                font-size: 10px;
+                line-height: 1.7;
+            }
+
+            .bank-suggestion {
+                display: none;
+                margin-top: 12px;
+                padding: 12px;
+                border: 1px solid rgba(255, 79, 154, 0.3);
+                border-radius: 12px;
+                background: #ff4f9a0c;
+
+                &.show {
+                    display: block;
+                    animation: fadeIn 0.25s ease;
+                }
+
+                .suggestion-label {
+                    display: block;
+                    margin-bottom: 7px;
+                    color: var(--muted);
+                    font-size: 10px;
+                }
+
+                .bank-options {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 7px;
+                }
+
+                .bank-option {
+                    padding: 6px 9px;
+                    border: 1px solid rgba(255, 79, 154, 0.35);
+                    border-radius: 8px;
+                    color: var(--soft-pink);
+                    background: rgba(255, 79, 154, 0.07);
+                    font-size: 11px;
+                }
+            }
+
+            .form-row {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: 12px;
+                margin-top: 17px;
+            }
+
+            .field-wrap {
+                min-width: 0;
+            }
+
+            .expiry-fields {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: 7px;
+                direction: ltr;
+            }
+
+            .captcha-row {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 7px;
+            }
+
+
+            .captcha-code {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 76px;
+                min-height: 45px;
+                padding: 0 8px;
+
+                border: 1px dashed rgba(255, 79, 154, 0.6);
+                border-radius: 12px;
+
+                background: repeating-linear-gradient(135deg,
+                        #211319,
+                        #211319 7px,
+                        #301720 7px,
+                        #301720 14px);
+
+                color: var(--soft-pink);
+                font-family: inherit;
+                font-size: 12px;
+                font-weight: 800;
+                letter-spacing: 1.5px;
+
+                cursor: pointer;
+                transition: border-color 0.2s, box-shadow 0.2s;
+            }
+
+            .captcha-code:hover {
+                border-color: var(--pink);
+                box-shadow: 0 0 12px rgba(255, 79, 154, 0.2);
+            }
+
+            .captcha-code:focus-visible {
+                outline: 2px solid var(--pink);
+                outline-offset: 3px;
+            }
+
+
+            .actions {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) 48px;
+                gap: 9px;
+                margin-top: 22px;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                min-height: 46px;
+                cursor: pointer;
+                font-family: inherit;
+                transition: 0.2s;
+            }
+
+            .primary-btn {
+                padding: 12px;
+                border: none;
+                border-radius: 13px;
+                background: linear-gradient(100deg, #ff6ca5, #e73382);
+                box-shadow: 0 10px 20px rgba(231, 51, 130, 0.2);
+                color: white;
+                font-size: 13px;
+                font-weight: 800;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 13px 25px rgba(231, 51, 130, 0.3);
+                }
+            }
+
+            .secondary-btn {
+                border: 1px solid var(--border);
+                border-radius: 13px;
+                background: var(--field);
+                color: var(--soft-pink);
+                font-size: 20px;
+
+                &:hover {
+                    border-color: var(--pink);
+                    background: #ff4f9a12;
+                }
+            }
+        }
+
+        @keyframes glassShine {
+            from {
+                left: -90%;
+            }
+
+            to {
+                left: 150%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 18px 12px;
+                align-items: flex-start;
+            }
+
+            .workspace {
+                padding: 19px;
+                border-radius: 23px;
+                box-shadow:
+                    0 0 22px rgba(255, 30, 125, 0.10),
+                    0 15px 45px #000a;
+
+                .bank-card {
+                    min-height: 210px;
+                    padding: 19px;
+                    transform: none;
+
+                    .card-number {
+                        font-size: clamp(13px, 3.8vw, 17px);
+                        letter-spacing: 0.8px;
+                    }
+
+                    .card-cvv {
+                        top: 124px;
+                        right: 19px;
+                    }
+
+                    .card-bottom {
+                        gap: 7px;
+                    }
+
+                    .card-holder {
+                        max-width: 105px;
+                        font-size: 9px;
+                    }
+
+                    .visa {
+                        font-size: 21px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 350px) {
+            .workspace {
+                padding: 14px;
+
+                .form-row {
+                    grid-template-columns: 1fr;
+                    gap: 14px;
+                }
+
+                .number-grid {
+                    gap: 5px;
+                }
+
+                .card-part {
+                    font-size: 11px;
+                }
+
+                .captcha-code {
+                    min-width: 65px;
+                    font-size: 10px;
+                }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+
+
+/* //footer// */
+
+/* MELINA SIGNATURE FOOTER */
+
+.page-shell {
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.page-shell > .workspace {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.melina-footer {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    min-height: 270px;
+    margin: 38px auto 0;
+    padding: 32px 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 79, 154, 0.3);
+    border-radius: 28px 28px 10px 10px;
+    background:
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(255, 22, 133, 0.12),
+            transparent 48%
+        ),
+        linear-gradient(145deg, #130a10, #080608 55%, #160912);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.04),
+        0 15px 50px rgba(0, 0, 0, 0.25);
+    color: #fff5fb;
+}
+
+.melina-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ff1685,
+        #ffd4e5,
+        #ff1685,
+        transparent
+    );
+    box-shadow: 0 0 15px #ff1685;
+}
+
+.footer-glow {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #ff1685;
+    filter: blur(85px);
+    opacity: 0.14;
+    pointer-events: none;
+}
+
+.footer-ring {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(255, 79, 154, 0.12);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.ring-a {
+    width: 330px;
+    height: 175px;
+    rotate: -18deg;
+}
+
+.ring-b {
+    width: 400px;
+    height: 210px;
+    rotate: 18deg;
+    border-color: rgba(255, 79, 154, 0.07);
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 19px;
+}
+
+/* Profile photo */
+.footer-photo-frame {
+    position: relative;
+    width: 104px;
+    height: 104px;
+    padding: 4px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 30deg,
+        #ff1685,
+        #ffd8e8,
+        #ff4f9a,
+        #7c103e,
+        #ff1685
+    );
+    box-shadow:
+        0 0 0 6px rgba(255, 79, 154, 0.06),
+        0 0 28px rgba(255, 22, 133, 0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.footer-photo-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid #10080d;
+    border-radius: 50%;
+}
+
+.melina-footer:hover .footer-photo-frame {
+    transform: scale(1.04);
+    box-shadow:
+        0 0 0 7px rgba(255, 79, 154, 0.08),
+        0 0 38px rgba(255, 22, 133, 0.38);
+}
+
+/* Name only */
+.footer-name {
+    margin: 0;
+    color: #fff2f8;
+    font-family: Georgia, serif;
+    font-size: clamp(42px, 6vw, 58px);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+    text-shadow: 0 0 24px rgba(255, 79, 154, 0.16);
+}
+
+.footer-name span {
+    color: #ff4f9a;
+    text-shadow: 0 0 18px rgba(255, 22, 133, 0.7);
+}
+
+/* Social icons */
+.footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.footer-socials a {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    border: 1px solid rgba(255, 79, 154, 0.28);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+    color: #ffc5dc;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.footer-socials svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.footer-socials .icon-dot {
+    fill: currentColor;
+    stroke: none;
+}
+
+.footer-socials a:hover {
+    transform: translateY(-4px);
+    border-color: #ff4f9a;
+    background: #ff1685;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 22, 133, 0.3);
+}
+
+.footer-bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    width: 40%;
+    height: 2px;
+    border-radius: 50%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ff1685,
+        #ffd4e5,
+        #ff1685,
+        transparent
+    );
+    box-shadow: 0 0 14px #ff1685;
+}
+
+@media (max-width: 600px) {
+    .melina-footer {
+        min-height: 245px;
+        margin-top: 28px;
+        padding: 28px 16px 25px;
+        border-radius: 22px 22px 8px 8px;
+    }
+
+    .footer-photo-frame {
+        width: 88px;
+        height: 88px;
+    }
+
+    .footer-content {
+        gap: 17px;
+    }
+
+    .footer-socials {
+        gap: 10px;
+    }
+
+    .footer-socials a {
+        width: 37px;
+        height: 37px;
+    }
+
+    .ring-a {
+        width: 260px;
+        height: 140px;
+    }
+
+    .ring-b {
+        width: 310px;
+        height: 170px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-photo-frame,
+    .footer-socials a {
+        transition: none;
+    }
+}
+
+
+    </style>
+</head>
+
+<body>
+<div class="page-shell">
+
+
+    <section class="workspace">
+
+        <div class="workspace-head">
+            <h2>Card Details</h2>
+            <span>STEP 01 / 03</span>
+        </div>
+
+        <div class="card-scene">
+            <div class="bank-card" id="bankCard">
+
+                <div class="card-top">
+                    <span class="card-label">PREMIUM CARD</span>
+                    <span class="contactless">)))</span>
+                </div>
+
+                <div class="chip"></div>
+
+                <div class="card-number" id="previewNumber">
+                    •••• •••• •••• ••••
+                </div>
+
+                <!-- CVV preview -->
+                <div class="card-cvv" id="previewCvv">•••</div>
+
+                <div class="card-bottom">
+                    <div>
+                        <div class="card-holder-label">CARD HOLDER</div>
+                        <div class="card-holder" id="previewName">YOUR NAME</div>
+                    </div>
+
+                    <div>
+                        <div class="card-holder-label">EXPIRES</div>
+                        <div class="card-expiry" id="previewExpiry">MM/YY</div>
+                    </div>
+
+                    <div class="visa">VISA</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section-title">
+            <span class="step">01</span>
+            Card Number
+        </div>
+
+        <label class="field-label">16-digit demo card number</label>
+
+        <div class="number-grid">
+            <input class="field card-part" type="text" inputmode="numeric" maxlength="4" placeholder="••••"
+                aria-label="First four digits">
+            <input class="field card-part" type="text" inputmode="numeric" maxlength="4" placeholder="••••"
+                aria-label="Second four digits">
+            <input class="field card-part" type="text" inputmode="numeric" maxlength="4" placeholder="••••"
+                aria-label="Third four digits">
+            <input class="field card-part" type="text" inputmode="numeric" maxlength="4" placeholder="••••"
+                aria-label="Last four digits">
+        </div>
+
+        <div class="bank-suggestion" id="bankSuggestion" aria-live="polite">
+            <span class="suggestion-label">Suggested banks · data</span>
+            <div class="bank-options" id="bankOptions"></div>
+        </div>
+
+        <div class="form-row">
+            <div class="field-wrap">
+                <label class="field-label" for="holderName">Cardholder Name</label>
+                <input class="field" id="holderName" type="text" maxlength="22" placeholder="e.g. MELINA"
+                    autocomplete="off">
+            </div>
+
+            <div class="field-wrap">
+                <label class="field-label">Expiration Date</label>
+                <div class="expiry-fields">
+                    <input class="field" id="expiryMonth" type="text" inputmode="numeric" maxlength="2" placeholder="MM"
+                        aria-label="Expiration month">
+                    <input class="field" id="expiryYear" type="text" inputmode="numeric" maxlength="2" placeholder="YY"
+                        aria-label="Expiration year">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="field-wrap">
+                <label class="field-label" for="cvv">CVV2</label>
+                <input class="field" id="cvv" type="password" inputmode="numeric" maxlength="4" placeholder="•••"
+                    autocomplete="off">
+            </div>
+
+            <div class="field-wrap">
+                <label class="field-label" for="captchaInput">Verification Code</label>
+
+
+                <div class="captcha-row">
+                    <input class="field" id="captchaInput" type="text" inputmode="numeric" maxlength="6"
+                        placeholder="Enter code" autocomplete="off" aria-label="Enter verification code">
+
+                    <button class="captcha-code" id="captchaCode" type="button"
+                        aria-label="Generate a new verification code" title="Click to generate a new code">
+                        482731
+                    </button>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="primary-btn" type="button" id="demoButton">
+                Verify Details
+            </button>
+
+            <button class="secondary-btn" type="button" id="resetButton" aria-label="Reset form">↻</button>
+        </div>
+
+    </section>
+
+    <!-- //footer// -->
+
+    
+<footer class="melina-footer">
+
+    <div class="footer-glow"></div>
+    <div class="footer-ring ring-a"></div>
+    <div class="footer-ring ring-b"></div>
+
+    <div class="footer-content">
+
+        <div class="footer-photo-frame">
+            <img src="image/87E14D90-8D2E-4699-987A-D58D99D47FBA.jpeg.jpeg"Melina">
+        </div>
+
+        <h2 class="footer-name">Melina Jodat<span>.</span></h2>
+
+        <div class="footer-socials">
+
+            <a href="https://github.com/melinajdt"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.7c3-.3 6.2-1.5 6.2-7A5.4 5.4 0 0 0 19 4.7 5 5 0 0 0 18.9 1S17.7.7 15 2.5a13.5 13.5 0 0 0-7 0C5.3.7 4.1 1 4.1 1A5 5 0 0 0 4 4.7a5.4 5.4 0 0 0-1.4 3.7c0 5.5 3.2 6.7 6.2 7A3.4 3.4 0 0 0 8 18.1V22"/>
+                </svg>
+            </a>
+
+            <a href="https://www.instagram.com/developer_melina/"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.8" r="1" class="icon-dot"/>
+                </svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/melinajodt/"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 9v10M5 5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"/>
+                </svg>
+            </a>
+
+            <a href="melinajdt@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="3"/>
+                    <path d="m4 7 8 6 8-6"/>
+                </svg>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom-line"></div>
+
+</footer>
+
+</div>
+     
+
+    <script>
+        const previewNumber = document.getElementById('previewNumber');
+        const inputs = document.querySelectorAll('.card-part');
+
+        const cvv = document.getElementById('cvv');
+        const previewCvv = document.getElementById('previewCvv');
+
+        const holderName = document.getElementById('holderName');
+        const expiryMonth = document.getElementById('expiryMonth');
+        const expiryYear = document.getElementById('expiryYear');
+
+        const previewExpiry = document.getElementById('previewExpiry');
+        const previewName = document.getElementById('previewName');
+
+        const allInputs = document.querySelectorAll('input');
+
+        const bankSuggestion = document.getElementById('bankSuggestion')
+
+        const bankOptions = document.getElementById('bankOptions');
+
+        const captchaCode = document.getElementById('captchaCode');
+        const captchaInput = document.getElementById('captchaInput');
+        const demoButton = document.getElementById('demoButton');
+
+
+
+        const demoBanks = {
+            '41': ['Chase Bank', 'Bank of America'],
+            '42': ['Wells Fargo', 'Citibank'],
+            '45': ['Barclays', 'HSBC'],
+            '49': ['Deutsche Bank', 'BNP Paribas'],
+            '51': ['Capital One', 'American Express']
+        };
+
+
+
+        // Move to the previous input when Backspace is pressed on an empty field
+        allInputs.forEach((currentInput, index) => {
+            currentInput.addEventListener('keydown', (event) => {
+                if (
+                    event.key === 'Backspace' &&
+                    currentInput.value === '' &&
+                    index > 0
+                ) {
+                    allInputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Update the card number preview
+        inputs.forEach((cardInput, index) => {
+            cardInput.addEventListener('input', () => {
+                cardInput.value = cardInput.value.replace(/\D/g, '').slice(0, 4);
+
+                if (cardInput.value.length === 4) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else {
+                        holderName.focus();
+                    }
+                }
+
+                const cardNumber = Array.from(inputs)
+                    .map(item => item.value)
+                    .filter(value => value !== '')
+                    .join(' ');
+
+                previewNumber.textContent = cardNumber || '•••• •••• •••• ••••';
+            });
+        });
+
+
+        //bankname suggestion//
+        inputs.forEach((cardInput) => {
+
+            cardInput.addEventListener('input', () => {
+                const cardDigits = Array.from(inputs)
+                    .map(input => input.value)
+                    .join('');
+
+                const prefix = cardDigits.slice(0, 2);
+
+                bankOptions.innerHTML = '';
+
+                if (prefix.length < 2 || !demoBanks[prefix]) {
+                    bankSuggestion.classList.remove('show');
+                    return;
+                }
+
+                demoBanks[prefix].forEach((bankName) => {
+                    const bankItem = document.createElement('div');
+
+                    bankItem.classList.add('bank-option');
+                    bankItem.textContent = bankName;
+
+                    bankOptions.appendChild(bankItem);
+                });
+
+                bankSuggestion.classList.add('show');
+
+
+            })
+        }
+        )
+
+
+
+
+
+
+        // Update the expiry date preview
+        expiryMonth.addEventListener('input', () => {
+            expiryMonth.value = expiryMonth.value.replace(/\D/g, '').slice(0, 2);
+
+            if (expiryMonth.value.length === 2) {
+                expiryYear.focus();
+            }
+
+            previewExpiry.textContent =
+                `${expiryMonth.value || 'MM'}/${expiryYear.value || 'YY'}`;
+        });
+
+        expiryYear.addEventListener('input', () => {
+            expiryYear.value = expiryYear.value.replace(/\D/g, '').slice(0, 2);
+
+            if (expiryYear.value.length === 2) {
+                cvv.focus();
+            }
+
+            previewExpiry.textContent =
+                `${expiryMonth.value || 'MM'}/${expiryYear.value || 'YY'}`;
+        });
+
+        // Update the cardholder name preview
+        holderName.addEventListener('input', () => {
+            previewName.textContent = holderName.value.trim() || 'YOUR NAME';
+        });
+
+        // Update the CVV preview on the card
+        cvv.addEventListener('input', () => {
+            cvv.value = cvv.value.replace(/\D/g, '').slice(0, 4);
+            previewCvv.textContent = cvv.value || '•••';
+        });
+
+        // Reset the form and restore the card preview
+        document.getElementById('resetButton').addEventListener('click', () => {
+            allInputs.forEach(input => {
+                input.value = '';
+            });
+
+            previewNumber.textContent = '•••• •••• •••• ••••';
+            previewCvv.textContent = '•••';
+            previewName.textContent = 'YOUR NAME';
+            previewExpiry.textContent = 'MM/YY';
+
+
+
+            bankOptions.innerHTML = '';
+            bankSuggestion.classList.remove('show');
+
+            // Generate a new captcha
+            generateCaptcha();
+
+        });
+
+        //captcha//
+        function generateCaptcha() {
+            const characters = '0123456789';
+            let code = '';
+
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(
+                    Math.random() * characters.length
+                );
+
+                code += characters[randomIndex];
+            }
+
+            captchaCode.textContent = code;
+        }
+
+        /* GENERATE CAPTCHA WHEN THE PAGE LOADS */
+        generateCaptcha();
+
+        /* GENERATE A NEW CAPTCHA WHEN CLICKED */
+        captchaCode.addEventListener('click', () => {
+            generateCaptcha();
+        });
+
+        /* ALLOW ONLY NUMBERS IN CAPTCHA INPUT */
+        captchaInput.addEventListener('input', () => {
+            captchaInput.value = captchaInput.value
+                .replace(/\D/g, '')
+                .slice(0, 6);
+        });
+
+      //captcha//
+      
+/* VERIFY ALL FORM FIELDS */
+demoButton.addEventListener('click', () => {
+
+    // 1. Check card number
+    const cardNumber = Array.from(inputs)
+        .map(input => input.value)
+        .join('');
+
+    if (cardNumber.length !== 16) {
+        alert('Please enter all 16 digits of your card number.');
+        inputs[0].focus();
+        return;
+    }
+
+    // 2. Check cardholder name
+    const name = holderName.value.trim();
+
+    if (name === '') {
+        alert('Please enter the cardholder name.');
+        holderName.focus();
+        return;
+    }
+
+    if (!/^[a-zA-Z ]+$/.test(name)) {
+        alert('Please enter a valid name using English letters only.');
+        holderName.focus();
+        return;
+    }
+
+    // 3. Check expiration month
+    const month = Number(expiryMonth.value);
+    const year = expiryYear.value;
+
+    if (
+        expiryMonth.value.length !== 2 ||
+        month < 1 ||
+        month > 12
+    ) {
+        alert('Please enter a valid expiration month (01-12).');
+        expiryMonth.focus();
+        return;
+    }
+
+    // 4. Check expiration year
+    if (!/^\d{2}$/.test(year)) {
+        alert('Please enter the expiration year using 2 digits.');
+        expiryYear.focus();
+        return;
+    }
+
+    // Check whether the card has expired
+    const now = new Date();
+    const currentYear = now.getFullYear() % 100;
+    const currentMonth = now.getMonth() + 1;
+    const expiryYearNumber = Number(year);
+
+    if (
+        expiryYearNumber < currentYear ||
+        (expiryYearNumber === currentYear && month < currentMonth)
+    ) {
+        alert('This card has expired.');
+        expiryMonth.focus();
+        return;
+    }
+
+    // 5. Check CVV2
+    if (!/^\d{3,4}$/.test(cvv.value)) {
+        alert('CVV2 must contain 3 or 4 digits.');
+        cvv.focus();
+        return;
+    }
+
+    // 6. Check captcha
+    const enteredCode = captchaInput.value.trim();
+    const actualCode = captchaCode.textContent.trim();
+
+    if (!/^\d{6}$/.test(enteredCode) || enteredCode !== actualCode) {
+        alert('Incorrect verification code. Please try again.');
+        captchaInput.value = '';
+        generateCaptcha();
+        captchaInput.focus();
+        return;
+    }
+
+    alert('All fields are valid!');
+});
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
